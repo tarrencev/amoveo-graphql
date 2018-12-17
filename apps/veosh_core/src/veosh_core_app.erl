@@ -51,7 +51,7 @@ load_schema() ->
          'Order' => order,
          'SpendTransaction' => spend_transaction,
          'SignedTransactionPayload' => transaction_hash,
-         'Query' => query,
+         'Query' => root_query,
          'Mutation' => mutation,
          default => object }
      },

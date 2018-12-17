@@ -1,4 +1,4 @@
--module(query).
+-module(root_query).
 -include("./records.hrl").
 
 -export([execute/4]).
