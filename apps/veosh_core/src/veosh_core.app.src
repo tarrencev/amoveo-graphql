@@ -1,0 +1,22 @@
+{application, veosh_core,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, { veosh_core_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    iso8601,
+    jsx,
+    lager,
+    graphql
+   ]},
+  {env,[
+       {schema_file, "veosh.schema"}
+       ]},
+  {modules, []},
+
+  {maintainers, []},
+  {licenses, []},
+  {links, []}
+ ]}.

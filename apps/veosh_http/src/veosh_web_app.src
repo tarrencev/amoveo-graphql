@@ -1,0 +1,19 @@
+{application, veosh_web,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, { veosh_web_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    veosh_core,
+    cowboy]},
+  {env,[
+       {http_port, 17290}
+  ]},
+  {modules, []},
+
+  {maintainers, []},
+  {licenses, []},
+  {links, []}
+ ]}.
