@@ -6,13 +6,18 @@
   {applications,
    [kernel,
     stdlib,
+    inets,
     iso8601,
+    jiffy,
     jsx,
     lager,
+    encrypter,
     graphql
    ]},
   {env,[
-       {schema_file, "veosh.schema"}
+       {schema_file, "veosh.schema"},
+       {node_ext_api, {{127,0,0,1}, 8080}},
+       {node_int_api, {{127,0,0,1}, 8080}}
        ]},
   {modules, []},
 

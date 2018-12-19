@@ -29,9 +29,10 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
           {ok, base64:encode(Oracle#oracle.question)};
         <<"starts">> ->
           Starts = Oracle#oracle.starts,
-          case api:height() < Starts of
+          {ok, Height} = talker:talk({height}, external),
+          case Height < Starts of
             true -> {ok, #block{height = Starts}}; % block is in the future, return mock block
-            false -> {ok, block:get_by_height(Starts)}
+            false -> talker:talk({block, Starts}, external)
           end;
         <<"type">> ->
           case Oracle#oracle.type of
@@ -55,9 +56,10 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
           {ok, base64:encode(Oracle#oracle.creator)};
         <<"ends">> ->
           Ends = Oracle#oracle.done_timer,
-          case api:height() < Ends of
+          {ok, Height} = talker:talk({height}, external),
+          case Height < Ends of
             true -> {ok, #block{height = Ends}}; % block is in the future, return mock block
-            false -> {ok, block:get_by_height(Ends)}
+            false -> talker:talk({block, Ends}, external)
           end;
         <<"governance">> ->
           case Oracle#oracle.governance of

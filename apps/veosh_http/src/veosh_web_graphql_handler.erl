@@ -99,11 +99,10 @@ run_request(#{ document := Doc} = ReqCtx, Req, State) ->
 %% tag::run_preprocess[]
 run_preprocess(#{ document := AST } = ReqCtx, Req, State) ->
     try
-        Elaborated = graphql:elaborate(AST), % <1>
         {ok, #{
            fun_env := FunEnv,
-           ast := AST2 }} = graphql:type_check(Elaborated), % <2>
-        ok = graphql:validate(AST2), % <3>
+           ast := AST2 }} = graphql:type_check(AST), % <1>
+        ok = graphql:validate(AST2), % <2>
         run_execute(ReqCtx#{ document := AST2, fun_env => FunEnv }, Req, State)
     catch
         throw:Err ->

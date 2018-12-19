@@ -1,9 +1,19 @@
 REBAR=./rebar3
 
-.PHONY: compile shell-schema release dialyzer publish documentation test
+CORE = rel/veosh/bin/veosh
+
+.PHONY: build go compile shell-schema release dialyzer publish test
 
 compile:
 	$(REBAR) compile
+
+run:
+	@./_build/default/rel/veosh/bin/veosh console
+
+go:
+	make compile
+	make release
+	make run
 
 ## Rebar3 advertises that its shell command boots the system with a
 ## changed path:
@@ -24,16 +34,3 @@ dialyzer:
 
 test:
 	$(REBAR) ct
-
-DOC_SOURCES = $(wildcard doc/*.asciidoc)
-IMAGE_SOURCES = $(wildcard doc/images/*)
-doc/book.html: $(DOC_SOURCES)
-	asciidoctor doc/book.asciidoc
-
-index.html: doc/book.html
-	cp doc/book.html index.html
-
-documentation: doc/book.html
-publish: index.html
-	touch doc/book.asciidoc # Bump the last-updated-label
-	cp -r $(IMAGE_SOURCES) images

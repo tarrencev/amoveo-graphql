@@ -7,6 +7,16 @@ talk_timeout(Msg, {IP, Port}, X) ->
     P = build_string_peer(IP, Port),
     talk_helper(Msg, P, ?RETRY, X).
 
+talk(Msg, internal) ->
+    IP = {127,0,0,1},
+    Port = 8081,
+    talk(Msg, build_string_peer(IP, Port));
+
+talk(Msg, external) ->
+    IP = {127,0,0,1},
+    Port = 8080,
+    talk(Msg, build_string_peer(IP, Port));
+
 talk(Msg, {IP, Port}) ->
     talk(Msg, build_string_peer(IP, Port));
 
@@ -29,10 +39,7 @@ build_string_peer(IP, Port) ->
     P = integer_to_list(Port),
     "http://" ++ T ++ ":" ++ P ++ "/".
 check_print(S) ->
-    case sync_mode:check() of
-	normal -> ok;
-	quick -> io:fwrite(S)
-    end.
+    ok.
 
 talk_helper(_, _, 0, _) ->
     check_print("talk helper fail\n"),

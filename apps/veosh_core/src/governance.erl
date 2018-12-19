@@ -6,59 +6,59 @@
 execute(_Ctx, Order, Field, Args) ->
     case Field of
         <<"blockReward">> ->
-          {ok, api:governance(block_reward)};
+          talker:talk({governance, block_reward}, internal);
         <<"developerReward">> ->
-          {ok, api:governance(developer_reward)};
+          talker:talk({governance, developer_reward}, internal);
         <<"maxBlockSize">> ->
-          {ok, api:governance(max_block_size)};
+          talker:talk({governance, max_block_size}, internal);
         <<"blockPeriod">> ->
-          {ok, api:governance(block_period)};
+          talker:talk({governance, block_period}, internal);
         <<"timeGas">> ->
-          {ok, api:governance(time_gas)};
+          talker:talk({governance, time_gas}, internal);
         <<"spaceGas">> ->
-          {ok, api:governance(space_gas)};
+          talker:talk({governance, space_gas}, internal);
         <<"funLimit">> ->
-          {ok, api:governance(fun_limit)};
+          talker:talk({governance, fun_limit}, internal);
         <<"varLimit">> ->
-          {ok, api:governance(var_limit)};
+          talker:talk({governance, var_limit}, internal);
         <<"governanceChangeLimit">> ->
-          {ok, api:governance(governance_change_limit)};
+          talker:talk({governance, governance_change_limit}, internal);
         <<"oracleInitialLiquidity">> ->
-          {ok, api:governance(oracle_initial_liquidity)};
+          talker:talk({governance, oracle_initial_liquidity}, internal);
         <<"minimumOracleTime">> ->
-          {ok, api:governance(minimum_oracle_time)};
+          talker:talk({governance, minimum_oracle_time}, internal);
         <<"maximumOracleTime">> ->
-          {ok, api:governance(maximum_oracle_time)};
+          talker:talk({governance, maximum_oracle_time}, internal);
         <<"maximumQuestionSize">> ->
-          {ok, api:governance(maximum_question_size)};
+          talker:talk({governance, maximum_question_size}, internal);
         <<"createAccountTx">> ->
-          {ok, api:governance(create_acc_tx)};
+          talker:talk({governance, create_acc_tx}, internal);
         <<"spendTx">> ->
-          {ok, api:governance(spend)};
+          talker:talk({governance, spend}, internal);
         <<"deleteAccountTx">> ->
-          {ok, api:governance(delete_acc_tx)};
+          talker:talk({governance, delete_acc_tx}, internal);
         <<"newChannelTx">> ->
-          {ok, api:governance(nc)};
+          talker:talk({governance, nc}, internal);
         <<"channelTeamCloseTx">> ->
-          {ok, api:governance(ctc)};
+          talker:talk({governance, ctc}, internal);
         <<"channelSoloCloseTx">> ->
-          {ok, api:governance(csc)};
+          talker:talk({governance, csc}, internal);
         <<"channelTimeoutTx">> ->
-          {ok, api:governance(timeout)};
+          talker:talk({governance, timeout}, internal);
         <<"channelSlashTx">> ->
-          {ok, api:governance(cs)};
+          talker:talk({governance, cs}, internal);
         <<"existenceProofTx">> ->
-          {ok, api:governance(ex)};
+          talker:talk({governance, ex}, internal);
         <<"oracleNewTx">> ->
-          {ok, api:governance(oracle_new)};
+          talker:talk({governance, oracle_new}, internal);
         <<"oracleBetTx">> ->
-          {ok, api:governance(oracle_bet)};
+          talker:talk({governance, oracle_bet}, internal);
         <<"oracleCloseTx">> ->
-          {ok, api:governance(oracle_close)};
+          talker:talk({governance, oracle_close}, internal);
         <<"unmatchedTx">> ->
-          {ok, api:governance(unmatched)};
+          talker:talk({governance, unmatched}, internal);
         <<"oracleQuestionLiquidity">> ->
-          {ok, api:governance(oracle_question_liquidity)};
+          talker:talk({governance, oracle_question_liquidity}, internal);
         <<"oracleWinningsTx">> ->
-          {ok, api:governance(oracle_winnings)}
+          talker:talk({governance, oracle_winnings}, internal)
     end.

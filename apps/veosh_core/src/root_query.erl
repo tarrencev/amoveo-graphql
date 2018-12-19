@@ -7,19 +7,19 @@ execute(_, _, Field, Args) ->
   case Field of
     <<"account">> ->
       #{ <<"pubkey">> := Pubkey } = Args,
-      {ok, api:account(Pubkey)};
+      talker:talk({account, Pubkey}, external);
     <<"header">> ->
       #{ <<"height">> := Height } = Args,
-      {ok, block:block_to_header(block:get_by_height(Height))};
+      talker:talk({header, Height}, external);
     <<"block">> ->
       #{ <<"height">> := Height } = Args,
-      {ok, block:get_by_height(Height)};
+      talker:talk({block, Height}, external);
     <<"height">> ->
-      {ok, api:height()};
+      talker:talk({height}, external);
     <<"governance">> ->
       {ok, #governance{}};
     <<"oracles">> ->
-      Oracles = oracles:all(),
+      {_, Oracles } = talker:talk({oracles}, internal),
       SortedOracles = lists:sort(fun({_, X}, {_, Y}) -> X#oracle.starts > Y#oracle.starts end, Oracles),
       {ok, [{ok, M} || M <- SortedOracles]}
   end.

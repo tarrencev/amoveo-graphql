@@ -4,9 +4,9 @@
 -export([execute/4]).
 
 estimate_future_block_time(Height) ->
-    Top = api:height(),
-    TopBlock = block:get_by_height(Top),
-    Period = trees:get(governance, block_period),
+    {_, Top} = talker:talk({height}, {{127,0,0,1}, 8080}),
+    {_, TopBlock} = talker:talk({block, Height}, {{127,0,0,1}, 8080}),
+    {_, Period} = talker:talk({governance, block_period}, {{127,0,0,1}, 8081}),
     (Height - Top) * Period + TopBlock#block.time.
 
 execute(_Ctx, Block, Field, Args) ->
