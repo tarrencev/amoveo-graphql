@@ -218,5 +218,6 @@ type Query {
   header(height: Int): Header
   height: Int
   oracles: [Oracle]
+  oracle(id: String): Oracle
   governance: Governance
 }

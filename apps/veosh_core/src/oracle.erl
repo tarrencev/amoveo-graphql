@@ -3,16 +3,14 @@
 
 -export([execute/4]).
 
-orders(Id) ->
-  Oracle2 = trees:get(oracles, Id),
-  X = oracles:orders(Oracle2),
-  IDs = orders:all(X),
-  P = lists:map(fun(Y) ->
-    {Root, Data, Path} = orders:get(Y, X),
+orders(OID) ->
+  Orders = talker:talk({orders, OID}, internal),
+  P = lists:map(fun(Order) ->
+    {Root, Data, Path} = Order,
     #orderproof{root = Root,
        path = Path,
        value = Data}
-  end, IDs),
+  end, Orders),
 
   {P2, _} = lists:split(length(P) - 1, P), % remove headers
   P2.
@@ -24,6 +22,7 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
         <<"result">> ->
           {ok, Oracle#oracle.result};
         <<"question">> ->
+          io:format("Message: ~p~n", [Message]),
           {ok, Message};
         <<"questionHash">> ->
           {ok, base64:encode(Oracle#oracle.question)};
@@ -31,8 +30,14 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
           Starts = Oracle#oracle.starts,
           {ok, Height} = talker:talk({height}, external),
           case Height < Starts of
-            true -> {ok, #block{height = Starts}}; % block is in the future, return mock block
-            false -> talker:talk({block, Starts}, external)
+            true ->
+              io:format("Starts1: ~p~n", [Starts]),
+              {ok, #block{height = Starts}}; % block is in the future, return mock block
+            false ->
+              io:format("Starts2: ~p~n", [Starts]),
+              {_, Block} = talker:talk({block, Starts}, external),
+              io:format("BlockH: ~p~n", [Block#block.height]),
+              {ok, Block}
           end;
         <<"type">> ->
           case Oracle#oracle.type of

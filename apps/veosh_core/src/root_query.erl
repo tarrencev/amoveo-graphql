@@ -21,5 +21,9 @@ execute(_, _, Field, Args) ->
     <<"oracles">> ->
       {_, Oracles } = talker:talk({oracles}, internal),
       SortedOracles = lists:sort(fun({_, X}, {_, Y}) -> X#oracle.starts > Y#oracle.starts end, Oracles),
-      {ok, [{ok, M} || M <- SortedOracles]}
+      {ok, [{ok, M} || M <- SortedOracles]};
+    <<"oracle">> ->
+      #{ <<"id">> := Id } = Args,
+      talker:talk({oracle, Id}, internal)
+
   end.

@@ -4,9 +4,9 @@
 -export([execute/4]).
 
 estimate_future_block_time(Height) ->
-    {_, Top} = talker:talk({height}, {{127,0,0,1}, 8080}),
-    {_, TopBlock} = talker:talk({block, Height}, {{127,0,0,1}, 8080}),
-    {_, Period} = talker:talk({governance, block_period}, {{127,0,0,1}, 8081}),
+    {_, Top} = talker:talk({height}, external),
+    {_, TopBlock} = talker:talk({block, Height}, external),
+    {_, Period} = talker:talk({governance, block_period}, internal),
     (Height - Top) * Period + TopBlock#block.time.
 
 execute(_Ctx, Block, Field, Args) ->

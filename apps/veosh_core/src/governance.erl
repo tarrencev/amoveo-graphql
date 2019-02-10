@@ -6,59 +6,59 @@
 execute(_Ctx, Order, Field, Args) ->
     case Field of
         <<"blockReward">> ->
-          talker:talk({governance, block_reward}, internal);
+          talker:talk({governance, 1}, internal);
         <<"developerReward">> ->
-          talker:talk({governance, developer_reward}, internal);
+          talker:talk({governance, 2}, internal);
         <<"maxBlockSize">> ->
-          talker:talk({governance, max_block_size}, internal);
+          talker:talk({governance, 3}, internal);
         <<"blockPeriod">> ->
-          talker:talk({governance, block_period}, internal);
+          talker:talk({governance, 4}, internal);
         <<"timeGas">> ->
-          talker:talk({governance, time_gas}, internal);
+          talker:talk({governance, 5}, internal);
         <<"spaceGas">> ->
-          talker:talk({governance, space_gas}, internal);
+          talker:talk({governance, 6}, internal);
         <<"funLimit">> ->
-          talker:talk({governance, fun_limit}, internal);
+          talker:talk({governance, 7}, internal);
         <<"varLimit">> ->
-          talker:talk({governance, var_limit}, internal);
+          talker:talk({governance, 8}, internal);
         <<"governanceChangeLimit">> ->
-          talker:talk({governance, governance_change_limit}, internal);
+          talker:talk({governance, 9}, internal);
         <<"oracleInitialLiquidity">> ->
-          talker:talk({governance, oracle_initial_liquidity}, internal);
+          talker:talk({governance, 10}, internal);
         <<"minimumOracleTime">> ->
-          talker:talk({governance, minimum_oracle_time}, internal);
+          talker:talk({governance, 11}, internal);
         <<"maximumOracleTime">> ->
-          talker:talk({governance, maximum_oracle_time}, internal);
+          talker:talk({governance, 12}, internal);
         <<"maximumQuestionSize">> ->
-          talker:talk({governance, maximum_question_size}, internal);
+          talker:talk({governance, 13}, internal);
         <<"createAccountTx">> ->
-          talker:talk({governance, create_acc_tx}, internal);
+          talker:talk({governance, 14}, internal);
         <<"spendTx">> ->
-          talker:talk({governance, spend}, internal);
+          talker:talk({governance, 15}, internal);
         <<"deleteAccountTx">> ->
-          talker:talk({governance, delete_acc_tx}, internal);
+          talker:talk({governance, 16}, internal);
         <<"newChannelTx">> ->
-          talker:talk({governance, nc}, internal);
+          talker:talk({governance, 17}, internal);
         <<"channelTeamCloseTx">> ->
-          talker:talk({governance, ctc}, internal);
+          talker:talk({governance, 18}, internal);
         <<"channelSoloCloseTx">> ->
-          talker:talk({governance, csc}, internal);
+          talker:talk({governance, 19}, internal);
         <<"channelTimeoutTx">> ->
-          talker:talk({governance, timeout}, internal);
+          talker:talk({governance, 20}, internal);
         <<"channelSlashTx">> ->
-          talker:talk({governance, cs}, internal);
+          talker:talk({governance, 21}, internal);
         <<"existenceProofTx">> ->
-          talker:talk({governance, ex}, internal);
+          talker:talk({governance, 22}, internal);
         <<"oracleNewTx">> ->
-          talker:talk({governance, oracle_new}, internal);
+          talker:talk({governance, 23}, internal);
         <<"oracleBetTx">> ->
-          talker:talk({governance, oracle_bet}, internal);
+          talker:talk({governance, 24}, internal);
         <<"oracleCloseTx">> ->
-          talker:talk({governance, oracle_close}, internal);
+          talker:talk({governance, 25}, internal);
         <<"unmatchedTx">> ->
-          talker:talk({governance, unmatched}, internal);
+          talker:talk({governance, 26}, internal);
         <<"oracleQuestionLiquidity">> ->
-          talker:talk({governance, oracle_question_liquidity}, internal);
+          talker:talk({governance, 28}, internal);
         <<"oracleWinningsTx">> ->
-          talker:talk({governance, oracle_winnings}, internal)
+          talker:talk({governance, 27}, internal)
     end.
