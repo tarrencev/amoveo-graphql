@@ -22,7 +22,6 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
         <<"result">> ->
           {ok, Oracle#oracle.result};
         <<"question">> ->
-          io:format("Message: ~p~n", [Message]),
           {ok, Message};
         <<"questionHash">> ->
           {ok, base64:encode(Oracle#oracle.question)};
@@ -31,12 +30,9 @@ execute(_Ctx, {Message, Oracle}, Field, Args) ->
           {ok, Height} = talker:talk({height}, external),
           case Height < Starts of
             true ->
-              io:format("Starts1: ~p~n", [Starts]),
               {ok, #block{height = Starts}}; % block is in the future, return mock block
             false ->
-              io:format("Starts2: ~p~n", [Starts]),
               {_, Block} = talker:talk({block, Starts}, external),
-              io:format("BlockH: ~p~n", [Block#block.height]),
               {ok, Block}
           end;
         <<"type">> ->
